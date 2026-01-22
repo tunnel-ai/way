@@ -9,3 +9,4 @@ clone the repo in a fresh folder to check it still works... check for init files
 !git clone https://github.com/<USER>/<REPO>.git
 !pip -q install -e <REPO>
 
+update to main
