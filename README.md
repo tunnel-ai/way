@@ -1,12 +1,5 @@
-Notes to future me:
+## Notebooks
 
-- run 'smoke_test.py` from project root to verify it works
-  `uv run python notebooks/smoke_test.py`
-
-
-clone the repo in a fresh folder to check it still works... check for init files if it doesn't
-
-!git clone https://github.com/<USER>/<REPO>.git
-!pip -q install -e <REPO>
-
-update to main
+| Module | Description | Colab |
+|------|-------------|-------|
+| Module 1 | Foundations of AI, ML, Data Science | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/01_00_main.ipynb) |
