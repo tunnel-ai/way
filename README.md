@@ -13,15 +13,9 @@
 | Module 04_00 | Unsuper. Learning  | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/04_00_main.ipynb)|
 | Module 04_01 | Unsuper. Learning Guided | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/04_01_exercise_guided.ipynb)|
 | Module 04_02 | Unsuper. Learning - Open | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/04_02_exercise_open.ipynb)|
-| Module 05_00 | NLP | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/05_00_main.ipynb
-)|
-| Module 05_01 | NLP | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/05_01_exercise_guided.ipynb
-)|
-| Module 05_03 | Linguistic Analytics | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/05_03_extension_linguistic.ipynb
-)|
+| Module 05_00 | NLP | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/05_00_main.ipynb)|
+| Module 05_01 | NLP | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/05_01_exercise_guided.ipynb)|
+| Module 05_03 | Linguistic Analytics | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/05_03_extension_linguistic.ipynb)|
 | Module 06_00 | Vision Workbook | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tunnel-ai/way/blob/main/notebooks/06_00_main.ipynb)|
 | Module 1 | drscr | badge here|
 | Module 1 | drscr | badge here|
