@@ -8,6 +8,12 @@ dependencies = [
   "ipykernel>=7.2.0",
   "pandas>=2.2,<3.0",
   "scikit-learn>=1.4",
+  "numpy>=1.26",
+  "matplotlib>=3.8",
+  "requests>=2.31",
+  "nltk>=3.8",
+  "textstat>=0.7",
+  "tensorflow>=2.16",
 ]
 
 [build-system]
