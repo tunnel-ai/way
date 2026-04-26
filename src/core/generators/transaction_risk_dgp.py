@@ -84,8 +84,8 @@ class TransactionRiskConfig:
     missingness_strength: float = 1.0  # scales MNAR logits
 
     # fraud model
-    interaction_strength: float = 0.8  # foreign*new_device*online interaction multiplier
-    noise_sigma: float = 1.0  # additive noise in fraud logit (higher => harder)
+    interaction_strength: float = 1.8  # foreign*new_device*online interaction multiplier
+    noise_sigma: float = 0.5  # additive noise in fraud logit (higher => harder)
 
     # numeric caps / sanity
     max_minutes_gap: int = 7 * 24 * 60  # cap time_since_last_transaction
@@ -404,17 +404,17 @@ def generate_transaction_risk_dataset(
 
     s = (
         -3.2
-        + 0.55*acc_risk
+        + 0.15*acc_risk
         + 0.55*foreign
         + 0.45*newdev
         + 0.40*online
         + 0.20*mobile
         + 0.35*sms
-        + 0.20*night
-        + 0.25*ln_vel
-        + 0.18*ln_amt
-        + 0.45*cat_risk
-        + 0.55*merchant_risk
+        + 0.40*night
+        + 0.40*ln_vel
+        + 0.30*ln_amt
+        + 0.25*cat_risk
+        + 0.30*merchant_risk
         + config.interaction_strength * 0.9 * interaction
         + rng.normal(0.0, config.noise_sigma, size=tx_n)
     )
@@ -455,14 +455,50 @@ def generate_transaction_risk_dataset(
     avg_transaction_amount_30d = np.clip(np.exp(acc_mu + rng.normal(0, 0.20, size=tx_n)), 0.5, config.max_amount)
     std_transaction_amount_30d = np.clip(np.exp(np.log(8.0) + rng.normal(0, 0.55, size=tx_n)), 0.1, 500.0)
 
+    # -------------------------
+    # Observable merchant risk score
+    # -------------------------
+    # Realistic: payment processors maintain merchant risk scores. We expose a noisy
+    # observable version of the latent `merchant_risk` driver. Noise prevents perfect
+    # recovery — gives models signal but not a free answer.
+    merchant_risk_score = merchant_risk + rng.normal(0.0, 0.10, size=tx_n)
+
+    # -------------------------
+    # Prior-fraud history feature (90-day rolling window per account)
+    # -------------------------
+    # Compute synthetic timestamps within each account by cumsumming time-since-last,
+    # then for each transaction count fraud events from the same account in the prior
+    # 90 days. Open-loop: derived from already-generated labels (correlates with latent
+    # account risk, so still predictive without a feedback iteration).
+    window_min = 90 * 24 * 60
+    hist_df = pd.DataFrame({
+        "account_id": account_ids,
+        "tx_idx": np.arange(tx_n),
+        "delta_min": delta_minutes,
+        "is_fraud_int": is_fraud.astype(int),
+    })
+    hist_df["t_min"] = hist_df.groupby("account_id")["delta_min"].cumsum()
+
+    prior_fraud_count_90d = np.zeros(tx_n, dtype=int)
+    for _, group in hist_df.groupby("account_id", sort=False):
+        times = group["t_min"].to_numpy()
+        fraud = group["is_fraud_int"].to_numpy()
+        indices = group["tx_idx"].to_numpy()
+        cumfraud = np.concatenate([[0], np.cumsum(fraud)])
+        lo_idx = np.searchsorted(times, times - window_min, side="left")
+        counts = cumfraud[np.arange(len(times))] - cumfraud[lo_idx]
+        prior_fraud_count_90d[indices] = counts
+
     # Assemble dataframe (schema intentionally stable across modules)
     df = pd.DataFrame({
         "transaction_id": np.arange(1, tx_n + 1, dtype=int),
         "account_id": account_ids.astype(int),
+        "account_age_days": acc_age.astype(int),
 
         "merchant_id": merchant_id.astype(int),
         "merchant_name": merchant_name,
         "merchant_category": merchant_category,
+        "merchant_risk_score": np.round(merchant_risk_score, 4),
         "payment_channel": channel,
         "country": country,
 
@@ -475,6 +511,7 @@ def generate_transaction_risk_dataset(
         "time_since_last_transaction_minutes": np.round(delta_minutes, 2),
         "transactions_last_24h": tx_last_24h.astype(int),
         "transactions_last_7d": tx_last_7d.astype(int),
+        "prior_fraud_count_90d": prior_fraud_count_90d.astype(int),
 
         "transaction_amount": np.round(amount, 2),
         "avg_transaction_amount_30d": np.round(avg_transaction_amount_30d, 2),
