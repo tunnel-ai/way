@@ -1,0 +1,6 @@
+challenge_group,role,federalist_no,modern_attribution,passages,passages_predicting_madison,mean_prob_madison,median_prob_madison,predicted_author
+Q01,disputed,49,Madison,5,5,0.7749313170172633,0.7769171169323773,Madison
+Q02,control,40,Madison,5,5,0.9273474203457421,0.9972270896668981,Madison
+Q03,control,22,Hamilton,5,0,0.03535126757860754,0.000998588967092644,Hamilton
+Q04,control,24,Hamilton,5,0,0.010117959780936828,0.0018855937498766346,Hamilton
+Q05,control,37,Madison,5,4,0.8610807697444006,0.9971579631266884,Madison

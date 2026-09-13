@@ -1,0 +1,26 @@
+challenge_passage_id,challenge_group,role,federalist_no,author,modern_attribution,historical_status,word_count,original_id
+C001,Q02,control,40,Madison,Madison,uncontested,177,P089
+C002,Q05,control,37,Madison,Madison,uncontested,189,P054
+C003,Q05,control,37,Madison,Madison,uncontested,166,P046
+C004,Q04,control,24,Hamilton,Hamilton,uncontested,191,P045
+C005,Q04,control,24,Hamilton,Hamilton,uncontested,179,P097
+C006,Q01,disputed,49,,Madison,historically disputed between Hamilton and Madison,194,X011
+C007,Q05,control,37,Madison,Madison,uncontested,174,P100
+C008,Q03,control,22,Hamilton,Hamilton,uncontested,167,P065
+C009,Q02,control,40,Madison,Madison,uncontested,192,P040
+C010,Q01,disputed,49,,Madison,historically disputed between Hamilton and Madison,207,X014
+C011,Q03,control,22,Hamilton,Hamilton,uncontested,150,P081
+C012,Q04,control,24,Hamilton,Hamilton,uncontested,163,P067
+C013,Q05,control,37,Madison,Madison,uncontested,178,P098
+C014,Q04,control,24,Hamilton,Hamilton,uncontested,187,P056
+C015,Q03,control,22,Hamilton,Hamilton,uncontested,171,P051
+C016,Q04,control,24,Hamilton,Hamilton,uncontested,168,P016
+C017,Q01,disputed,49,,Madison,historically disputed between Hamilton and Madison,196,X017
+C018,Q03,control,22,Hamilton,Hamilton,uncontested,168,P057
+C019,Q02,control,40,Madison,Madison,uncontested,193,P047
+C020,Q05,control,37,Madison,Madison,uncontested,175,P019
+C021,Q01,disputed,49,,Madison,historically disputed between Hamilton and Madison,201,X001
+C022,Q02,control,40,Madison,Madison,uncontested,177,P083
+C023,Q03,control,22,Hamilton,Hamilton,uncontested,177,P032
+C024,Q02,control,40,Madison,Madison,uncontested,153,P018
+C025,Q01,disputed,49,,Madison,historically disputed between Hamilton and Madison,201,X022
